@@ -6,7 +6,6 @@ package northgate.maths;
 import java.io.File;
 
 import northgate.maths.Swing.EquFrame;
-import northgate.maths.Swing.Vector3D;
 import northgate.maths.opengl.GLWindow;
 
 /**

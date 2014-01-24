@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -17,6 +18,7 @@ import javax.swing.JTextField;
  * @author Kyle
  *
  */
+@SuppressWarnings("serial")
 public class Equation extends JPanel implements ActionListener{
 	
 	//Vector Vars
@@ -26,7 +28,7 @@ public class Equation extends JPanel implements ActionListener{
 	public JTextField[] vecInputs = new JTextField[9];
 	public JLabel vecLabel = new JLabel("r = (  _  ) + t(  _  ) + s(  _  )");
 	
-	//Cartesian vars
+	//Cartesian Vars
 	public double x;
 	public double y;
 	public double z;
@@ -35,7 +37,7 @@ public class Equation extends JPanel implements ActionListener{
 	public JLabel cartLabel = new JLabel("_x+      _y+      _z=      _");
 	
 	public String[] Type = {"Cartesian", "Vector", "None"};
-	public JComboBox TypeSel = new JComboBox(Type);
+	public JComboBox<String> TypeSel = new JComboBox<String>(Type);
 
 	
 	
@@ -109,7 +111,6 @@ public class Equation extends JPanel implements ActionListener{
 				break;
 			}
 		}
-		
 	}
 
 	/**

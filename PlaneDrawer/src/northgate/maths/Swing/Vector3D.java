@@ -9,10 +9,10 @@ package northgate.maths.Swing;
  */
 public class Vector3D{
 	private double x, y, z;
-	public Vector3D(int x,int y,int z){
-		this.x = x;
-		this.y = y;
-		this.z = z;
+	public Vector3D(float pos,float pos2,float pos3){
+		this.x = pos;
+		this.y = pos2;
+		this.z = pos3;
 	}
 	/**
 	 * @return the x
