@@ -18,14 +18,14 @@ public class Parent {
 	public static GLWindow glwindow;
 	
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		LoadNatives();
 		createSwingWindow();
 		createGLWindow();
 
 	}
 	
-	public static void createGLWindow(){
+	public static void createGLWindow() throws InterruptedException{
 		glwindow = new GLWindow();
 	}
 	

@@ -15,6 +15,7 @@ import northgate.maths.Swing.Vector3D;
 
 
 
+
 import org.lwjgl.LWJGLException;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
@@ -53,7 +54,7 @@ public class GLWindow {
 	
 	public boolean[] Pressed = new boolean[4];
 	
-	public GLWindow() {
+	public GLWindow() throws InterruptedException {
 	
 		try {
 			Display.setDisplayMode(new DisplayMode(800, 600));
@@ -83,6 +84,7 @@ public class GLWindow {
 			GLRender();
 			glPopMatrix();
 			Display.update();
+			Thread.sleep(1000/60);
 		}
 		Display.destroy();
 		System.exit(0);
