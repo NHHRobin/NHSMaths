@@ -148,8 +148,8 @@ public class GLWindow {
 		
 		// Left Click
 		if(Mouse.isButtonDown(0)){
-			camX += xChange/100;
-			camY += yChange/100;
+			camX -= xChange/100;
+			camY -= yChange/100;
 			
 	
 		}
