@@ -54,8 +54,7 @@ public class Equation extends JPanel implements ActionListener{
 		cartLabel.setVisible(false);
 		vecLabel.setBounds(50, 45, 225, 15);
 		vecLabel.setVisible(false);
-		add(cartLabel);
-		add(vecLabel);
+
 		cartInputs[0] = new JTextField();
 		cartInputs[0].setBounds(35, 45, 20, 15);
 		cartInputs[1] = new JTextField();
@@ -91,6 +90,9 @@ public class Equation extends JPanel implements ActionListener{
 			add(j);
 			j.setVisible(false);
 		}
+		
+		add(cartLabel);
+		add(vecLabel);
 	}
 
 	/* 

@@ -13,12 +13,34 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 
+import northgate.maths.Parent;
+
 /**
  * @author Kyle
  *
  */
 @SuppressWarnings("serial")
 public class EquFrame extends JFrame implements ActionListener{
+	
+	//cart constants
+	private static final int X = 0;
+	private static final int Y = 1;
+	private static final int Z = 2;
+	private static final int D = 3;
+	
+	//vec constants
+	private static final int POSX = 0;
+	private static final int POSY = 1;
+	private static final int POSZ = 2;
+	
+	private static final int DIR1X = 3;
+	private static final int DIR1Y = 4;
+	private static final int DIR1Z = 5;
+	
+	private static final int DIR2X = 6;
+	private static final int DIR2Y = 7;
+	private static final int DIR2Z = 8;
+	
 	
 	private final int numPlane = 5;
 	
@@ -52,21 +74,16 @@ public class EquFrame extends JFrame implements ActionListener{
 		Vector3D[][] vecs = new Vector3D[5][4];
 		boolean[] needDraw = new boolean[5];
 		Arrays.fill(needDraw, true);
+		String v;
 		
 		for(int i = 0; i < vecs.length; i++){
 			if(equations[i].TypeSel.getSelectedIndex() == 0){
 				//cart
 				
-			}
-			
-			if(equations[i].TypeSel.getSelectedIndex() == 1){
-				//vector
-				
-				float[] out = new float[equations[i].vecInputs.length];
-				
-				for (int p = 0; p < equations[i].vecInputs.length; p++) {
-					JTextField f = equations[i].vecInputs[p];
-					String v = f.getText();
+				float[] out = new float[equations[i].cartInputs.length];
+				for (int p = 0; p < equations[i].cartInputs.length; p++) {
+					v = equations[i].cartInputs[p].getText();
+
 					if (v == null) {
 						out[p] = 0;
 					} else {
@@ -78,12 +95,58 @@ public class EquFrame extends JFrame implements ActionListener{
 					}
 				}
 				
-				// Calculate 4 Positions
-				float[] pos = {};
-				pos[0] = 0;
-				pos[1] = 0;
-				pos[2] = 0;
-				vecs[i][0] = new Vector3D(pos[0], pos[1], pos[2]); // 1
+				//XXX if cart plane looks wrong its in here
+				vecs[i][0].setX();
+				vecs[i][0].setY(); 
+				vecs[i][0].setZ(); 
+				
+				vecs[i][1].setX(); 
+				vecs[i][1].setY(); 
+				vecs[i][1].setZ(); 
+				
+				vecs[i][2].setX(); 
+				vecs[i][2].setY(); 
+				vecs[i][2].setZ(); 
+				
+				vecs[i][3].setX(); 
+				vecs[i][3].setY(); 
+				vecs[i][3].setZ(); 
+				
+			}
+			
+			if(equations[i].TypeSel.getSelectedIndex() == 1){
+				//vector
+				
+				float[] out = new float[equations[i].vecInputs.length];
+				for (int p = 0; p < equations[i].vecInputs.length; p++) {
+					v = equations[i].vecInputs[p].getText();
+
+					if (v == null) {
+						out[p] = 0;
+					} else {
+						try {
+							out[p] = Float.valueOf(v);
+						} catch (Exception e) {
+							out[p] = 0;
+						}
+					}
+				}
+				//if vec plane looks wrong its in here
+				vecs[i][0].setX();
+				vecs[i][0].setY(); 
+				vecs[i][0].setZ(); 
+				
+				vecs[i][1].setX(); 
+				vecs[i][1].setY(); 
+				vecs[i][1].setZ(); 
+				
+				vecs[i][2].setX(); 
+				vecs[i][2].setY(); 
+				vecs[i][2].setZ(); 
+				
+				vecs[i][3].setX(); 
+				vecs[i][3].setY(); 
+				vecs[i][3].setZ(); 
 				
 			}
 			
@@ -97,7 +160,7 @@ public class EquFrame extends JFrame implements ActionListener{
 			}
 			
 		}
-		
+		Parent.glwindow.upDatevecs(vecs, needDraw);
 	}
 
 	@Override
