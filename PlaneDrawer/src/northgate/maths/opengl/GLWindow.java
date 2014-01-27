@@ -7,7 +7,9 @@ package northgate.maths.opengl;
 
 import java.util.Arrays;
 
+import northgate.maths.Parent;
 import northgate.maths.Swing.Vector3D;
+
 
 
 
@@ -84,6 +86,7 @@ public class GLWindow {
 			GLRender();
 			glPopMatrix();
 			Display.update();
+			upDatevecs();
 			Thread.sleep(1000/60);
 		}
 		Display.destroy();
@@ -121,9 +124,12 @@ public class GLWindow {
 		
 		// Draw Planes
 		for(int i = 0 ; i < drawvecs.length; i++){
+			System.out.println(needWriting[i]);
 			if(needWriting[i]){
+			glColor3d(1, 0, 1);
 			glBegin(GL_QUADS);
 			for(int j = 0 ; j < drawvecs[i].length; j++){
+				System.out.println(drawvecs[i][j].getX() + ":" + drawvecs[i][j].getY() + ":" + drawvecs[i][j].getZ());
 				glVertex3d(drawvecs[i][j].getX(), drawvecs[i][j].getY(), drawvecs[i][j].getZ());
 			}
 			glEnd();
@@ -263,9 +269,9 @@ public class GLWindow {
 	 */
 
 
-	public void upDatevecs(Vector3D[][] vecs, boolean[] ndwrt){
-		this.drawvecs = vecs;
-		this.needWriting = ndwrt;
+	public void upDatevecs(){
+		this.drawvecs = Parent.equframe.exportVectors();
+		this.needWriting = Parent.equframe.getNeedDraw();
 	}
 
 }

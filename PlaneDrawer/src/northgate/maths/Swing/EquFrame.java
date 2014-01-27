@@ -3,16 +3,12 @@
  */
 package northgate.maths.Swing;
 
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Arrays;
 
-import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JTextField;
-
 import northgate.maths.Parent;
 
 /**
@@ -43,6 +39,7 @@ public class EquFrame extends JFrame implements ActionListener{
 	
 	
 	private final int numPlane = 5;
+	boolean[] needDraw = new boolean[5];
 	
 	private Equation[] equations = new Equation[numPlane];
 	
@@ -61,6 +58,8 @@ public class EquFrame extends JFrame implements ActionListener{
 		add(btn);
 		
 		setVisible(true);
+		
+		Arrays.fill(needDraw, true);
 	}
 	
 	public void addEquations(){
@@ -70,7 +69,7 @@ public class EquFrame extends JFrame implements ActionListener{
 		}
 	}
 	
-	public void exportVectors(){
+	public Vector3D[][] exportVectors(){
 		Vector3D[][] vecs = new Vector3D[5][4];
 		for(int i1 = 0 ; i1 < 5; i1++){
 			for(int i2 = 0 ; i2 < 4; i2++){
@@ -78,8 +77,6 @@ public class EquFrame extends JFrame implements ActionListener{
 			}
 		}
 		
-		boolean[] needDraw = new boolean[5];
-		Arrays.fill(needDraw, true);
 		String v;
 		
 		for(int i = 0; i < vecs.length; i++){
@@ -118,6 +115,7 @@ public class EquFrame extends JFrame implements ActionListener{
 				vecs[i][3].setY((out[D] - (out[X] * 50) - (out[Z] * 50)) * (1/out[Y])); 
 				vecs[i][3].setZ(50); 
 				
+				needDraw[i] = true;
 			}
 			
 			if(equations[i].TypeSel.getSelectedIndex() == 1){
@@ -176,8 +174,10 @@ public class EquFrame extends JFrame implements ActionListener{
 			}
 			
 		}
-		Parent.glwindow.upDatevecs(vecs, needDraw);
-		//FIXME method is throwing nullpointer(metod , not parameters)
+		
+		return vecs;
+		
+		//FIXME method is throwing nullpointer(method , not parameters)
 	}
 
 	@Override
@@ -185,6 +185,10 @@ public class EquFrame extends JFrame implements ActionListener{
 		if (a.getSource() == btn) {
 			exportVectors();
 		}
+	}
+
+	public boolean[] getNeedDraw() {
+		return needDraw;
 	}
 	
 
