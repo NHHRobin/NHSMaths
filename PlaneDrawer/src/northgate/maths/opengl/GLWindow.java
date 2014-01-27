@@ -10,14 +10,6 @@ import java.util.Arrays;
 import northgate.maths.Parent;
 import northgate.maths.Swing.Vector3D;
 
-
-
-
-
-
-
-
-
 import org.lwjgl.LWJGLException;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
@@ -29,6 +21,7 @@ import static org.lwjgl.opengl.GL11.*;
  * @author Kyle
  *
  */
+//TODO: Update Controls, Viewing, Color, Cart/Vector Lines (GL_LINES)
 public class GLWindow {
 	
 	// Historical, Maps used in Projection to Frustum Conversion
@@ -124,15 +117,13 @@ public class GLWindow {
 		
 		// Draw Planes
 		for(int i = 0 ; i < drawvecs.length; i++){
-			System.out.println(needWriting[i]);
 			if(needWriting[i]){
-			glColor3d(1, 0, 1);
-			glBegin(GL_QUADS);
-			for(int j = 0 ; j < drawvecs[i].length; j++){
-				System.out.println(drawvecs[i][j].getX() + ":" + drawvecs[i][j].getY() + ":" + drawvecs[i][j].getZ());
-				glVertex3d(drawvecs[i][j].getX(), drawvecs[i][j].getY(), drawvecs[i][j].getZ());
-			}
-			glEnd();
+				glColor3d(1, 0, 1);
+				glBegin(GL_QUADS);
+				for(int j = 0 ; j < drawvecs[i].length; j++){
+					glVertex3d(drawvecs[i][j].getX(), drawvecs[i][j].getY(), drawvecs[i][j].getZ());
+				}
+				glEnd();
 			}
 		}
 
@@ -261,7 +252,6 @@ public class GLWindow {
 		xRot = 0;
 		
 		Arrays.fill(Pressed, false);
-		
 	}
 
 	/**
