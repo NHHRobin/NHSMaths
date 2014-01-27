@@ -95,22 +95,22 @@ public class EquFrame extends JFrame implements ActionListener{
 					}
 				}
 				
-				//XXX if cart plane looks wrong its in here
-				vecs[i][0].setX();
-				vecs[i][0].setY(); 
-				vecs[i][0].setZ(); 
+				//XXX if cart plane looks wrong its in here		
+				vecs[i][0].setX(-50);
+				vecs[i][0].setY((out[D] - (out[X] * -50) - (out[Z] * 50)) * (1/out[Y])); 
+				vecs[i][0].setZ(50); 
 				
-				vecs[i][1].setX(); 
-				vecs[i][1].setY(); 
-				vecs[i][1].setZ(); 
+				vecs[i][1].setX(-50); 
+				vecs[i][1].setY((out[D] - (out[X] * -50) - (out[Z] * -50)) * (1/out[Y])); 
+				vecs[i][1].setZ(-50); 
 				
-				vecs[i][2].setX(); 
-				vecs[i][2].setY(); 
-				vecs[i][2].setZ(); 
+				vecs[i][2].setX(50); 
+				vecs[i][2].setY((out[D] - (out[X] * 50) - (out[Z] * -50)) * (1/out[Y])); 
+				vecs[i][2].setZ(-50); 
 				
-				vecs[i][3].setX(); 
-				vecs[i][3].setY(); 
-				vecs[i][3].setZ(); 
+				vecs[i][3].setX(50); 
+				vecs[i][3].setY((out[D] - (out[X] * 50) - (out[Z] * 50)) * (1/out[Y])); 
+				vecs[i][3].setZ(50); 
 				
 			}
 			
@@ -131,7 +131,7 @@ public class EquFrame extends JFrame implements ActionListener{
 						}
 					}
 				}
-				//if vec plane looks wrong its in here
+				//XXX if vec plane looks wrong its in here
 				vecs[i][0].setX();
 				vecs[i][0].setY(); 
 				vecs[i][0].setZ(); 
@@ -146,8 +146,7 @@ public class EquFrame extends JFrame implements ActionListener{
 				
 				vecs[i][3].setX(); 
 				vecs[i][3].setY(); 
-				vecs[i][3].setZ(); 
-				
+				vecs[i][3].setZ(); 			
 			}
 			
 			if(equations[i].TypeSel.getSelectedIndex() == 2){
