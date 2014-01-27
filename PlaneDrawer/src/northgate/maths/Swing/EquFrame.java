@@ -72,6 +72,12 @@ public class EquFrame extends JFrame implements ActionListener{
 	
 	public void exportVectors(){
 		Vector3D[][] vecs = new Vector3D[5][4];
+		for(int i1 = 0 ; i1 < 5; i1++){
+			for(int i2 = 0 ; i2 < 4; i2++){
+				vecs[i1][i2] = new Vector3D(0, 0, 0);
+			}
+		}
+		
 		boolean[] needDraw = new boolean[5];
 		Arrays.fill(needDraw, true);
 		String v;
@@ -132,34 +138,46 @@ public class EquFrame extends JFrame implements ActionListener{
 					}
 				}
 				//XXX if vec plane looks wrong its in here
-				vecs[i][0].setX();
-				vecs[i][0].setY(); 
-				vecs[i][0].setZ(); 
+				vecs[i][0].setX(0);
+				vecs[i][0].setY(0); 
+				vecs[i][0].setZ(0); 
 				
-				vecs[i][1].setX(); 
-				vecs[i][1].setY(); 
-				vecs[i][1].setZ(); 
+				vecs[i][1].setX(0); 
+				vecs[i][1].setY(0); 
+				vecs[i][1].setZ(0); 
 				
-				vecs[i][2].setX(); 
-				vecs[i][2].setY(); 
-				vecs[i][2].setZ(); 
+				vecs[i][2].setX(0); 
+				vecs[i][2].setY(0); 
+				vecs[i][2].setZ(0); 
 				
-				vecs[i][3].setX(); 
-				vecs[i][3].setY(); 
-				vecs[i][3].setZ(); 			
+				vecs[i][3].setX(0); 
+				vecs[i][3].setY(0); 
+				vecs[i][3].setZ(0); 			
 			}
 			
 			if(equations[i].TypeSel.getSelectedIndex() == 2){
 				needDraw[i] = false;
-				vecs[i][0] = new Vector3D(0,0,0);
-				vecs[i][1] = new Vector3D(0,0,0);
-				vecs[i][2] = new Vector3D(0,0,0);
-				vecs[i][3] = new Vector3D(0,0,0);
+				vecs[i][0].setX(0);
+				vecs[i][0].setY(0); 
+				vecs[i][0].setZ(0); 
+				
+				vecs[i][1].setX(0); 
+				vecs[i][1].setY(0); 
+				vecs[i][1].setZ(0); 
+				
+				vecs[i][2].setX(0); 
+				vecs[i][2].setY(0); 
+				vecs[i][2].setZ(0); 
+				
+				vecs[i][3].setX(0); 
+				vecs[i][3].setY(0); 
+				vecs[i][3].setZ(0); 	
 				
 			}
 			
 		}
 		Parent.glwindow.upDatevecs(vecs, needDraw);
+		//FIXME method is throwing nullpointer(metod , not parameters)
 	}
 
 	@Override

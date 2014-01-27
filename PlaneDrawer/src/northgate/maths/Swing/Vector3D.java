@@ -14,6 +14,8 @@ public class Vector3D{
 		this.y = pos2;
 		this.z = pos3;
 	}
+	
+
 	/**
 	 * @return the x
 	 */
