@@ -232,7 +232,7 @@ public class GLWindow {
 
 		glMatrixMode(GL_PROJECTION);
 		glLoadIdentity();
-		glFrustum(-0.0552, 0.0552, -0.0414, 0.0414, 0.1f, 100f);
+		glFrustum(-0.0552, 0.0552, -0.0414, 0.0414, 0.1f, 300f);
 		glMatrixMode(GL_MODELVIEW);
 		glLoadIdentity();
 		glViewport(0, 0, 800, 600);
