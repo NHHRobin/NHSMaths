@@ -118,10 +118,17 @@ public class GLWindow {
 		// Draw Planes
 		for(int i = 0 ; i < drawvecs.length; i++){
 			if(needWriting[i]){
-				glColor3d(1, 0, 1);
-				glBegin(GL_QUADS);
-				for(int j = 0 ; j < drawvecs[i].length; j++){
-					glVertex3d(drawvecs[i][j].getX(), drawvecs[i][j].getY(), drawvecs[i][j].getZ());
+				glColor4d(1, 0, 1, 0.5);
+				if (drawvecs[i][3] == null) {
+					glBegin(GL_LINES);
+					for(int j = 0 ; j < 2; j++){
+						glVertex3d(drawvecs[i][j].getX(), drawvecs[i][j].getY(), drawvecs[i][j].getZ());
+					}
+				} else {
+					glBegin(GL_QUADS);
+					for(int j = 0 ; j < drawvecs[i].length; j++){
+						glVertex3d(drawvecs[i][j].getX(), drawvecs[i][j].getY(), drawvecs[i][j].getZ());
+					}
 				}
 				glEnd();
 			}
@@ -144,7 +151,7 @@ public class GLWindow {
 		oldMouseY = MouseY;
 		
 		// Left Click
-		if(Mouse.isButtonDown(0)){
+		if(Mouse.isButtonDown(1)){
 			camX -= xChange/100;
 			camY -= yChange/100;
 			
@@ -152,7 +159,7 @@ public class GLWindow {
 		}
 		
 		// Right Click
-		if(Mouse.isButtonDown(1)){
+		if(Mouse.isButtonDown(0)){
 			yRot -= yChange/10;
 			xRot += xChange/10;
 		}
@@ -237,7 +244,8 @@ public class GLWindow {
 		glLoadIdentity();
 		glViewport(0, 0, 800, 600);
 		glEnable(GL_DEPTH_TEST);
-		
+		glEnable(GL_BLEND);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		
 	}
 	

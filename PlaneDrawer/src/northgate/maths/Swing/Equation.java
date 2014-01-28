@@ -97,8 +97,6 @@ public class Equation extends JPanel implements ActionListener{
 		cartLInputs[2] = new JTextField();
 		cartLInputs[2].setBounds(115, 45, 20, 15);
 		for (JTextField j : cartLInputs){
-			j.getDocument().putProperty("parent", this);
-			j.getDocument().addDocumentListener(l);
 			add(j);
 			j.setVisible(false);
 		}
@@ -122,7 +120,6 @@ public class Equation extends JPanel implements ActionListener{
 		vecLInputs[5] = new JTextField();
 		vecLInputs[5].setBounds(116, 65, 20, 15);
 		for (JTextField j : vecLInputs){
-			j.getDocument().putProperty("parent", this);
 			j.getDocument().addDocumentListener(l);
 			add(j);
 			j.setVisible(false);
@@ -142,7 +139,6 @@ public class Equation extends JPanel implements ActionListener{
 		cartPInputs[3] = new JTextField();
 		cartPInputs[3].setBounds(155, 45, 20, 15);
 		for (JTextField j : cartPInputs){
-			j.getDocument().putProperty("parent", this);
 			j.getDocument().addDocumentListener(l);
 			add(j);
 			j.setVisible(false);
@@ -172,7 +168,6 @@ public class Equation extends JPanel implements ActionListener{
 		vecPInputs[8] = new JTextField();
 		vecPInputs[8].setBounds(161, 65, 20, 15);
 		for (JTextField j : vecPInputs){
-			j.getDocument().putProperty("parent", this);
 			j.getDocument().addDocumentListener(l);
 			add(j);
 			j.setVisible(false);

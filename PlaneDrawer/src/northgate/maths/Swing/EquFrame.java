@@ -20,6 +20,7 @@ public class EquFrame extends JFrame implements ActionListener{
 	
 	//Range Constants
 	private static final int maxX = 10;
+	private static final int maxY = 10;
 	private static final int maxZ = 10;
 	
 	//Cartesian Constants
@@ -101,13 +102,13 @@ public class EquFrame extends JFrame implements ActionListener{
 	
 	public boolean updateVecs(Equation e, Integer i) {
 		if (e.TypeSel.getSelectedIndex() == Equation.posCartLine) {
-			float[] out = getInput(e.cartPInputs);
+			float[] out = getInput(e.cartLInputs);
 			vecs[i] = createCartLine(out);
 			return true;
 		}
 		
 		if (e.TypeSel.getSelectedIndex() == Equation.posVecLine) {
-			float[] out = getInput(e.cartPInputs);
+			float[] out = getInput(e.vecLInputs);
 			vecs[i] = createVectorLine(out);
 			return true;
 		}
@@ -119,7 +120,7 @@ public class EquFrame extends JFrame implements ActionListener{
 		}
 		
 		if (e.TypeSel.getSelectedIndex() == Equation.posVecPlane) {
-			float[] out = getInput(e.cartPInputs);
+			float[] out = getInput(e.vecPInputs);
 			vecs[i] = createVectorPlane(out);
 			return true;
 		}
@@ -174,36 +175,75 @@ public class EquFrame extends JFrame implements ActionListener{
 		return vector;
 	}
 	
-	//TODO : Complete
 	private Vector3D[] createVectorLine(float[] o) {
 		Vector3D[] vector = new Vector3D[4];
 		
-		for (int i = 0; i < 4; i++) { vector[i] = new Vector3D(0,0,0); } 
+		vector[0] = new Vector3D(0,0,0);
+		vector[1] = new Vector3D(0,0,0);
+		vector[2] = null;
+		vector[3] = null;
+		
+		if (o[03] != 0) {
+			vector[0].setX(maxX * o[3]);
+			vector[0].setY((vector[0].getX() - o[0])*(o[4]/o[3]) + o[1]);
+			vector[0].setZ((vector[0].getX() - o[0])*(o[5]/o[3]) + o[2]);
+			
+			vector[1].setX(-maxX * o[3]);
+			vector[1].setY((vector[1].getX() - o[0])*(o[4]/o[3]) + o[1]);
+			vector[1].setZ((vector[1].getX() - o[0])*(o[5]/o[3]) + o[2]);
+		} else {
+			if (o[4] != 0) {
+				vector[0].setX(o[0]);
+				vector[0].setY(maxY * o[4]);
+				vector[0].setZ((vector[0].getY() - o[1])*(o[5]/o[4]) + o[2]);
+				
+				vector[1].setX(o[0]);
+				vector[1].setY(-maxY * o[4]);
+				vector[1].setZ((vector[1].getY() - o[1])*(o[5]/o[4]) + o[2]);
+			} else {
+				if (o[05] != 0) {
+					vector[0].setX(o[0]);
+					vector[0].setY(o[1]);
+					vector[0].setZ(maxZ);
+
+					vector[1].setX(o[0]);
+					vector[1].setY(o[1]);
+					vector[1].setZ(-maxZ);
+					
+				}
+			}
+		}
 		
 		return vector;
 	}
 	
-	//FIXME : Not Quite Right
+	//TODO : 0 Handling ?
 	private Vector3D[] createCartPlane(float[] o) {
 		Vector3D[] vector = new Vector3D[4];
 		
 		for (int i = 0; i < 4; i++) { vector[i] = new Vector3D(0,0,0); } 
 		
 		vector[0].setX(-maxX);
-		vector[0].setY((o[D] - (o[X] * -maxX) - (o[Z] * maxZ)) * (1/o[Y])); 
-		vector[0].setZ(maxZ); 
+		vector[0].setY((o[D] - (o[X] * -maxX) - (o[Z] * maxZ)) * (1/o[Y]));
+		vector[0].setZ(maxZ);
 		
-		vector[1].setX(-50); 
-		vector[1].setY((o[D] - (o[X] * -maxX) - (o[Z] * -maxZ)) * (1/o[Y])); 
-		vector[1].setZ(-50); 
+		vector[1].setX(-maxX);
+		vector[1].setY((o[D] - (o[X] * -maxX) - (o[Z] * -maxZ)) * (1/o[Y]));
+		vector[1].setZ(-maxZ);
 		
-		vector[2].setX(50); 
-		vector[2].setY((o[D] - (o[X] * maxX) - (o[Z] * -maxZ)) * (1/o[Y])); 
-		vector[2].setZ(-50); 
+		vector[2].setX(maxX);
+		vector[2].setY((o[D] - (o[X] * maxX) - (o[Z] * -maxZ)) * (1/o[Y]));
+		vector[2].setZ(-maxZ);
 		
-		vector[3].setX(50); 
-		vector[3].setY((o[D] - (o[X] * maxX) - (o[Z] * maxZ)) * (1/o[Y])); 
-		vector[3].setZ(50);
+		vector[3].setX(maxX);
+		vector[3].setY((o[D] - (o[X] * maxX) - (o[Z] * maxZ)) * (1/o[Y]));
+		vector[3].setZ(maxZ);
+		
+		System.out.println(vector[0].getX() + ":" + vector[0].getY() + ":" + vector[0].getZ());
+		System.out.println(vector[1].getX() + ":" + vector[1].getY() + ":" + vector[1].getZ());
+		System.out.println(vector[2].getX() + ":" + vector[2].getY() + ":" + vector[2].getZ());
+		System.out.println(vector[3].getX() + ":" + vector[3].getY() + ":" + vector[3].getZ());
+		System.out.println("finished");
 		
 		return vector;
 	}
