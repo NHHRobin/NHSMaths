@@ -53,8 +53,9 @@ public class Equation extends JPanel implements ActionListener{
 	public JLabel cartPLabel = new JLabel("_x+      _y+      _z=      _");
 	
 	//Cartesian Line Vars
-	public JTextField[] cartLInputs = new JTextField[3];
-	public JLabel cartLLabel = new JLabel("_x+      _y=      _");
+	public JTextField[] cartLInputs = new JTextField[9];
+	public JLabel cartLLabel = new JLabel("_x -      _=      _y -      _=      _z -      _");
+	public JLabel cartLUabel = new JLabel("________     ________     ________");
 	
 	public String[] Type = {"Cartesian-Line", "Vector-Line", "Cartesian-Plane", "Vector-Plane", "None"};
 	public JComboBox<String> TypeSel = new JComboBox<String>(Type);
@@ -78,6 +79,7 @@ public class Equation extends JPanel implements ActionListener{
 		iVecP(l);
 		
 		add(cartLLabel);
+		add(cartLUabel);
 		add(vecLLabel);
 		add(cartPLabel);
 		add(vecPLabel);
@@ -87,15 +89,31 @@ public class Equation extends JPanel implements ActionListener{
 	
 	//TODO
 	public void iCarL(EquationListener l) {
-		cartLLabel.setBounds(50, 45, 225, 15);
+		
+		cartLLabel.setBounds(29, 45, 225, 15);
 		cartLLabel.setVisible(false);
 		
+		cartLUabel.setBounds(17, 47, 225, 15);
+		cartLUabel.setVisible(false);
+		
 		cartLInputs[0] = new JTextField();
-		cartLInputs[0].setBounds(35, 45, 20, 15);
+		cartLInputs[0].setBounds(16, 45, 20, 15);
 		cartLInputs[1] = new JTextField();
-		cartLInputs[1].setBounds(75, 45, 20, 15);
+		cartLInputs[1].setBounds(55, 45, 20, 15);
 		cartLInputs[2] = new JTextField();
-		cartLInputs[2].setBounds(115, 45, 20, 15);
+		cartLInputs[2].setBounds(35, 63, 20, 15);
+		cartLInputs[3] = new JTextField();
+		cartLInputs[3].setBounds(87, 45, 20, 15);
+		cartLInputs[4] = new JTextField();
+		cartLInputs[4].setBounds(125, 45, 20, 15);
+		cartLInputs[5] = new JTextField();
+		cartLInputs[5].setBounds(106, 63, 20, 15);
+		cartLInputs[6] = new JTextField();
+		cartLInputs[6].setBounds(157, 45, 20, 15);
+		cartLInputs[7] = new JTextField();
+		cartLInputs[7].setBounds(195, 45, 20, 15);
+		cartLInputs[8] = new JTextField();
+		cartLInputs[8].setBounds(176, 63, 20, 15);
 		for (JTextField j : cartLInputs){
 			add(j);
 			j.setVisible(false);
@@ -104,21 +122,21 @@ public class Equation extends JPanel implements ActionListener{
 	
 	//TODO
 	public void iVecL(EquationListener l) {
-		vecLLabel.setBounds(50, 45, 225, 15);
+		vecLLabel.setBounds(65, 50, 225, 15);
 		vecLLabel.setVisible(false);
 		
 		vecLInputs[0] = new JTextField();
-		vecLInputs[0].setBounds(72, 25, 20, 15);
+		vecLInputs[0].setBounds(87, 30, 20, 15);
 		vecLInputs[1] = new JTextField();
-		vecLInputs[1].setBounds(72, 45, 20, 15);
+		vecLInputs[1].setBounds(87, 50, 20, 15);
 		vecLInputs[2] = new JTextField();
-		vecLInputs[2].setBounds(72, 65, 20, 15);
+		vecLInputs[2].setBounds(87, 70, 20, 15);
 		vecLInputs[3] = new JTextField();
-		vecLInputs[3].setBounds(116, 25, 20, 15);
+		vecLInputs[3].setBounds(131, 30, 20, 15);
 		vecLInputs[4] = new JTextField();
-		vecLInputs[4].setBounds(116, 45, 20, 15);
+		vecLInputs[4].setBounds(131, 50, 20, 15);
 		vecLInputs[5] = new JTextField();
-		vecLInputs[5].setBounds(116, 65, 20, 15);
+		vecLInputs[5].setBounds(131, 70, 20, 15);
 		for (JTextField j : vecLInputs){
 			j.getDocument().addDocumentListener(l);
 			add(j);
@@ -127,17 +145,17 @@ public class Equation extends JPanel implements ActionListener{
 	}
 
 	public void iCarP(EquationListener l) {
-		cartPLabel.setBounds(50, 45, 225, 15);
+		cartPLabel.setBounds(58, 45, 225, 15);
 		cartPLabel.setVisible(false);
 		
 		cartPInputs[0] = new JTextField();
-		cartPInputs[0].setBounds(35, 45, 20, 15);
+		cartPInputs[0].setBounds(45, 45, 20, 15);
 		cartPInputs[1] = new JTextField();
-		cartPInputs[1].setBounds(75, 45, 20, 15);
+		cartPInputs[1].setBounds(84, 45, 20, 15);
 		cartPInputs[2] = new JTextField();
-		cartPInputs[2].setBounds(115, 45, 20, 15);
+		cartPInputs[2].setBounds(123, 45, 20, 15);
 		cartPInputs[3] = new JTextField();
-		cartPInputs[3].setBounds(155, 45, 20, 15);
+		cartPInputs[3].setBounds(163, 45, 20, 15);
 		for (JTextField j : cartPInputs){
 			j.getDocument().addDocumentListener(l);
 			add(j);
@@ -146,27 +164,27 @@ public class Equation extends JPanel implements ActionListener{
 	}
 	
 	public void iVecP(EquationListener l) {
-		vecPLabel.setBounds(50, 45, 225, 15);
+		vecPLabel.setBounds(43, 50, 225, 15);
 		vecPLabel.setVisible(false);
 		
 		vecPInputs[0] = new JTextField();
-		vecPInputs[0].setBounds(72, 25, 20, 15);
+		vecPInputs[0].setBounds(65, 30, 20, 15);
 		vecPInputs[1] = new JTextField();
-		vecPInputs[1].setBounds(72, 45, 20, 15);
+		vecPInputs[1].setBounds(65, 50, 20, 15);
 		vecPInputs[2] = new JTextField();
-		vecPInputs[2].setBounds(72, 65, 20, 15);
+		vecPInputs[2].setBounds(65, 70, 20, 15);
 		vecPInputs[3] = new JTextField();
-		vecPInputs[3].setBounds(116, 25, 20, 15);
+		vecPInputs[3].setBounds(109, 30, 20, 15);
 		vecPInputs[4] = new JTextField();
-		vecPInputs[4].setBounds(116, 45, 20, 15);
+		vecPInputs[4].setBounds(109, 50, 20, 15);
 		vecPInputs[5] = new JTextField();
-		vecPInputs[5].setBounds(116, 65, 20, 15);
+		vecPInputs[5].setBounds(109, 70, 20, 15);
 		vecPInputs[6] = new JTextField();
-		vecPInputs[6].setBounds(161, 25, 20, 15);
+		vecPInputs[6].setBounds(156, 30, 20, 15);
 		vecPInputs[7] = new JTextField();
-		vecPInputs[7].setBounds(161, 45, 20, 15);
+		vecPInputs[7].setBounds(156, 50, 20, 15);
 		vecPInputs[8] = new JTextField();
-		vecPInputs[8].setBounds(161, 65, 20, 15);
+		vecPInputs[8].setBounds(156, 70, 20, 15);
 		for (JTextField j : vecPInputs){
 			j.getDocument().addDocumentListener(l);
 			add(j);
@@ -213,6 +231,7 @@ public class Equation extends JPanel implements ActionListener{
 		y = 0;
 		z = 0;
 		cartLLabel.setVisible(false);
+		cartLUabel.setVisible(false);
 		vecLLabel.setVisible(false);
 		cartPLabel.setVisible(false);
 		vecPLabel.setVisible(false);
@@ -279,6 +298,7 @@ public class Equation extends JPanel implements ActionListener{
 		}
 		
 		cartLLabel.setVisible(true);
+		cartLUabel.setVisible(true);
 	}
 	
 	public boolean toPos(Integer i) {

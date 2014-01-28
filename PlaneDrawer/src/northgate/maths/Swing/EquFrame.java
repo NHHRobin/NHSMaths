@@ -172,6 +172,8 @@ public class EquFrame extends JFrame implements ActionListener{
 		
 		for (int i = 0; i < 4; i++) { vector[i] = new Vector3D(0,0,0); } 
 		
+		
+		
 		return vector;
 	}
 	
@@ -239,12 +241,6 @@ public class EquFrame extends JFrame implements ActionListener{
 		vector[3].setY((o[D] - (o[X] * maxX) - (o[Z] * maxZ)) * (1/o[Y]));
 		vector[3].setZ(maxZ);
 		
-		System.out.println(vector[0].getX() + ":" + vector[0].getY() + ":" + vector[0].getZ());
-		System.out.println(vector[1].getX() + ":" + vector[1].getY() + ":" + vector[1].getZ());
-		System.out.println(vector[2].getX() + ":" + vector[2].getY() + ":" + vector[2].getZ());
-		System.out.println(vector[3].getX() + ":" + vector[3].getY() + ":" + vector[3].getZ());
-		System.out.println("finished");
-		
 		return vector;
 	}
 
@@ -252,7 +248,8 @@ public class EquFrame extends JFrame implements ActionListener{
 	private Vector3D[] createVectorPlane(float[] o) {
 		Vector3D[] vector = new Vector3D[4];
 		
-		for (int i = 0; i < 4; i++) { vector[i] = new Vector3D(0,0,0); } 
+		for (int i = 0; i < 4; i++) { vector[i] = new Vector3D(0,0,0); }
+		
 		return vector;
 	}
 }
