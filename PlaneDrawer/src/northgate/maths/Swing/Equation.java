@@ -11,6 +11,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JSlider;
 import javax.swing.JTextField;
 
 /**
@@ -61,10 +62,15 @@ public class Equation extends JPanel implements ActionListener{
 	public String[] Type = {"Cartesian-Line", "Vector-Line", "Cartesian-Plane", "Vector-Plane", "None"};
 	public JComboBox<String> TypeSel = new JComboBox<String>(Type);
 	
+	//Slider
+	public JSlider alphaSlider = new JSlider(JSlider.HORIZONTAL, 0, 255, 230);
+	
 	public Equation(int x,int y, int Id){
 		
 		this.Id = Id;
 		EquationListener l = new EquationListener(this);
+		
+
 		
 		TypeSel.setSelectedIndex(posNone);
 		setBounds(x, y, 230, 120);
@@ -73,6 +79,8 @@ public class Equation extends JPanel implements ActionListener{
 		TypeSel.addActionListener(this);
 		TypeSel.setBounds(getWidth()/2 - 100, 5, 200, 20);
 		add(TypeSel);
+		
+		iSlider(l);
 		
 		iCarL(l);
 		iVecL(l);
@@ -87,6 +95,18 @@ public class Equation extends JPanel implements ActionListener{
 
 		this.update(true);
 	}
+	
+	
+	public void iSlider(EquationListener l) {
+		alphaSlider.setBounds(5, getHeight() - 25, getWidth() - 10, 20);
+		alphaSlider.addChangeListener(l);
+		alphaSlider.setMajorTickSpacing(10);
+		alphaSlider.setMinorTickSpacing(5);
+		alphaSlider.setPaintTicks(true);
+		alphaSlider.setVisible(true);
+		add(alphaSlider);
+	}
+	
 	
 	//TODO
 	public void iCarL(EquationListener l) {

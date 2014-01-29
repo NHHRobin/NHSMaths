@@ -94,7 +94,7 @@ public class EquFrame extends JFrame implements ActionListener{
 				// s = s + ":" + i;
 				needDraw[i] = updateVecs(e, i);
 				e.update(false);
-				//alpha[i] = e.alpha;
+				alpha[i] = e.alpha;
 			}
 			if (i == 4 && s != "") {
 				// System.out.println(s);

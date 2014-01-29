@@ -261,11 +261,13 @@ public class GLWindow {
 		
 		Arrays.fill(Pressed, false);
 		
-		float[][] validColors = {new float[]{156/255, 177/255, 255/255},
-				                 new float[]{252/255, 177/255, 254/255},
-				                 new float[]{177/255, 252/255, 185/255},
-				                 new float[]{255/255, 176/255,  97/255},
-				                 new float[]{255/255,  54/255,  54/255}};
+		float[][] validColors = {new float[]{0, 1, 1},
+				                 new float[]{0.5f, 1, 0},
+				                 new float[]{1, 0, 1},
+				                 new float[]{0.5f, 1, 0.5f},
+				                 new float[]{1, 0.5f, 0.5f}
+								};
+		
 		
 		color = validColors;
 	}
