@@ -6,8 +6,11 @@ package northgate.maths.opengl;
 
 
 import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
 
 import northgate.maths.Parent;
+import northgate.maths.Swing.EquFrame;
 import northgate.maths.Swing.Vector3D;
 
 import org.lwjgl.LWJGLException;
@@ -29,8 +32,10 @@ public class GLWindow {
 	private final float piover180 = 0.0174532925f;
 	
     // to Display
-	public Vector3D[][] drawvecs = new Vector3D[5][4];
-	public boolean[] needWriting = new boolean[5];
+	public Vector3D[][] drawvecs = new Vector3D[EquFrame.numPlane][4];
+	public boolean[] needWriting = new boolean[EquFrame.numPlane];
+	public float[][] color = new float[EquFrame.numPlane][3];
+	public float[] alpha = new float[EquFrame.numPlane];
 	
 	public final float[] axis = {
 			0, 0, -100,
@@ -118,7 +123,7 @@ public class GLWindow {
 		// Draw Planes
 		for(int i = 0 ; i < drawvecs.length; i++){
 			if(needWriting[i]){
-				glColor4d(1, 0, 1, 0.5);
+				glColor4d(color[i][0], color[i][1], color[i][2], alpha[i]);
 				if (drawvecs[i][3] == null) {
 					glBegin(GL_LINES);
 					for(int j = 0 ; j < 2; j++){
@@ -154,8 +159,6 @@ public class GLWindow {
 		if(Mouse.isButtonDown(1)){
 			camX -= xChange/100;
 			camY -= yChange/100;
-			
-	
 		}
 		
 		// Right Click
@@ -260,6 +263,21 @@ public class GLWindow {
 		xRot = 0;
 		
 		Arrays.fill(Pressed, false);
+		
+		Random rand = new Random();
+		float[][] validColors = {new float[]{156/255, 177/255, 255/255},
+				                 new float[]{252/255, 177/255, 254/255},
+				                 new float[]{177/255, 252/255, 185/255},
+				                 new float[]{255/255, 176/255,  97/255},
+				                 new float[]{255/255,  54/255,  54/255}};
+		
+		for (int i = 0; i < EquFrame.numPlane; i++) {
+			int r = rand.nextInt(validColors.length);
+			color[i] = validColors[r];
+			List<float[]> f = Arrays.asList(validColors);
+			f.remove(r);
+			validColors = (float[][]) f.toArray();
+		}
 	}
 
 	/**
@@ -270,6 +288,7 @@ public class GLWindow {
 	public void upDatevecs(){
 		this.drawvecs = Parent.equframe.exportVectors();
 		this.needWriting = Parent.equframe.getNeedDraw();
+		this.alpha = Parent.equframe.getAlpha();
 	}
 
 }
