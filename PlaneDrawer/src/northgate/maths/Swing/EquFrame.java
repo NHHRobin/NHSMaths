@@ -19,9 +19,9 @@ import javax.swing.JTextField;
 public class EquFrame extends JFrame implements ActionListener{
 	
 	//Range Constants
-	private static final int maxX = 10;
-	private static final int maxY = 10;
-	private static final int maxZ = 10;
+	private static final int maxX = 80;
+	private static final int maxY = 80;
+	private static final int maxZ = 80;
 	
 	//Cartesian Constants
 	private static final int X = 0;
@@ -182,10 +182,7 @@ public class EquFrame extends JFrame implements ActionListener{
 		veci[5] = o[8]/o[6];
 		
 		vector = createVectorLine(veci);
-		for(Vector3D v : vector){
-			System.out.println(v);
-		}
-		System.out.println();
+
 		return vector;
 	}
 	
@@ -259,8 +256,24 @@ public class EquFrame extends JFrame implements ActionListener{
 	//TODO : Complete
 	private Vector3D[] createVectorPlane(float[] o) {
 		Vector3D[] vector = new Vector3D[4];
-		
+		float[] carti = new float[4];
 		for (int i = 0; i < 4; i++) { vector[i] = new Vector3D(0,0,0); }
+		
+		carti[2] = 1;
+		carti[0] = (o[4]*o[8] - o[5]*o[7])/(o[3]*o[7] - o[6]*o[4]);
+		carti[1] = (o[3]*o[8] - o[6]*o[5])/(o[6]*o[4] - o[3]*o[7]);
+		
+		carti[3] = carti[0]*o[0] + carti[1]*o[1] + carti[2]*o[2];
+		
+		vector = createCartPlane(carti);
+		System.out.println(carti);
+		System.out.println();
+		System.out.println(o);
+		System.out.println();
+		for(Vector3D v : vector){
+
+			System.out.println(v);
+		}
 		
 		return vector;
 	}
