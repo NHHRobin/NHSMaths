@@ -50,6 +50,7 @@ public class GLWindow {
 	public int oldMouseX, oldMouseY;
 	
 	public boolean[] Pressed = new boolean[4];
+	public boolean drawAxis;
 	
 	public GLWindow() throws InterruptedException {
 	
@@ -75,7 +76,6 @@ public class GLWindow {
 		initGL();
 		
 		while(!Display.isCloseRequested()){
-			
 			glPushMatrix();
 			Update();
 			GLRender();
@@ -101,20 +101,21 @@ public class GLWindow {
 		
 		// Axis
 		glBegin(GL_LINES);
-		
-		 glColor3d(1, 0, 0);
-		 glVertex3f(axis[0], axis[1], axis[2]);
-		 glVertex3f(axis[3], axis[4], axis[5]);
+		if (drawAxis) {
 			
-		 glColor3d(0, 1, 0);
-		 glVertex3f(axis[6], axis[7], axis[8]);
-		 glVertex3f(axis[9], axis[10], axis[11]);
+			 glColor3d(1, 0, 0);
+			 glVertex3f(axis[0], axis[1], axis[2]);
+			 glVertex3f(axis[3], axis[4], axis[5]);
+				
+			 glColor3d(0, 1, 0);
+			 glVertex3f(axis[6], axis[7], axis[8]);
+			 glVertex3f(axis[9], axis[10], axis[11]);
+				
+			 glColor3d(0, 0, 1);
+			 glVertex3f(axis[12], axis[13], axis[14]);
+			 glVertex3f(axis[15], axis[16], axis[17]);
 			
-		 glColor3d(0, 0, 1);
-		 glVertex3f(axis[12], axis[13], axis[14]);
-		 glVertex3f(axis[15], axis[16], axis[17]);
-			
-			
+		}
 		glEnd();
 		
 		// Draw Planes
@@ -126,13 +127,14 @@ public class GLWindow {
 					for(int j = 0 ; j < 2; j++){
 						glVertex3d(drawvecs[i][j].getX(), drawvecs[i][j].getY(), drawvecs[i][j].getZ());
 					}
+					glEnd();
 				} else {
 					glBegin(GL_QUADS);
 					for(int j = 0 ; j < drawvecs[i].length; j++){
 						glVertex3d(drawvecs[i][j].getX(), drawvecs[i][j].getY(), drawvecs[i][j].getZ());
 					}
+					glEnd();
 				}
-				glEnd();
 			}
 		}
 
@@ -261,6 +263,8 @@ public class GLWindow {
 		
 		Arrays.fill(Pressed, false);
 		
+		drawAxis = true;
+		
 		float[][] validColors = {new float[]{0, 1, 1},
 				                 new float[]{0.5f, 1, 0},
 				                 new float[]{1, 0, 1},
@@ -281,6 +285,7 @@ public class GLWindow {
 		this.drawvecs = Parent.equframe.exportVectors();
 		this.needWriting = Parent.equframe.getNeedDraw();
 		this.alpha = Parent.equframe.getAlpha();
+		this.drawAxis = Parent.equframe.getAxis();
 	}
 
 }

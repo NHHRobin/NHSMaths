@@ -241,11 +241,15 @@ public class Equation extends JPanel implements ActionListener{
 
 		this.update(true);
 	}
+	
+	public void Clear() {
+		Clear(false);
+	}
 
 	/**
 	 * 
 	 */
-	public void Clear() {
+	public void Clear(boolean b) {
 		posVec = null;
 		fdirVec = null;
 		sdirVec = null;
@@ -259,18 +263,22 @@ public class Equation extends JPanel implements ActionListener{
 		vecPLabel.setVisible(false);
 		
 		for (JTextField j : vecLInputs){
+			if (b) j.setText(null);
 			j.setVisible(false);
 		}
 		
 		for (JTextField j : cartLInputs){
+			if (b) j.setText(null);
 			j.setVisible(false);
 		}
 		
 		for (JTextField j : vecPInputs){
+			if (b) j.setText(null);
 			j.setVisible(false);
 		}
 		
 		for (JTextField j : cartPInputs){
+			if (b) j.setText(null);
 			j.setVisible(false);
 		}
 		

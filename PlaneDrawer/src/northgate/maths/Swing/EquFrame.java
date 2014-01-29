@@ -47,10 +47,12 @@ public class EquFrame extends JFrame implements ActionListener{
 	private Vector3D[][] vecs = new Vector3D[numPlane][4];
 	boolean[] needDraw = new boolean[numPlane];
 	float[] alpha = new float[numPlane];
+	boolean drawAxis;
 	
 	private Equation[] equations = new Equation[numPlane];
 	
 	public JButton btn = new JButton("Clear"); // Now Auto Draws
+	public JButton draw = new JButton("Axis");
 	
 	public EquFrame(){
 		super("Editing Panel");
@@ -61,13 +63,19 @@ public class EquFrame extends JFrame implements ActionListener{
 		addEquations();
 		
 		//btn.setBounds(getWidth()/2 - 35, getHeight() - 53, 70, 20);
-		btn.setBounds(5, getHeight() - 53, 230, 20);
+		btn.setBounds(125, getHeight() - 53, 110, 20);
 		btn.addActionListener(this);
 		add(btn);
+		
+		draw.setBounds(5, getHeight() - 53, 110, 20);
+		draw.addActionListener(this);
+		add(draw);
 		
 		setVisible(true);
 		
 		Arrays.fill(needDraw, true);
+		
+		drawAxis = true;
 		
 		// Declare All Initial Vectors as (0,0,0)
 		for(int i1 = 0 ; i1 < numPlane; i1++){
@@ -141,7 +149,10 @@ public class EquFrame extends JFrame implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent a) {
 		if (a.getSource() == btn) {
-			for (Equation e : equations) { e.Clear(); e.toPos(Equation.posNone);}
+			for (Equation e : equations) { e.Clear(true); e.toPos(Equation.posNone);}
+		}
+		if (a.getSource() == draw) {
+			drawAxis = !drawAxis;
 		}
 	}
 
@@ -151,6 +162,10 @@ public class EquFrame extends JFrame implements ActionListener{
 	
 	public float[] getAlpha() {
 		return alpha;
+	}
+	
+	public boolean getAxis() {
+		return drawAxis;
 	}
 	
 	//Utility Functions
@@ -202,21 +217,21 @@ public class EquFrame extends JFrame implements ActionListener{
 		vector[3] = null;
 		
 		if (o[03] != 0) {
-			vector[0].setX(maxX * o[3]);
+			vector[0].setX(maxX);
 			vector[0].setY((vector[0].getX() - o[0])*(o[4]/o[3]) + o[1]);
 			vector[0].setZ((vector[0].getX() - o[0])*(o[5]/o[3]) + o[2]);
 			
-			vector[1].setX(-maxX * o[3]);
+			vector[1].setX(-maxX);
 			vector[1].setY((vector[1].getX() - o[0])*(o[4]/o[3]) + o[1]);
 			vector[1].setZ((vector[1].getX() - o[0])*(o[5]/o[3]) + o[2]);
 		} else {
 			if (o[4] != 0) {
 				vector[0].setX(o[0]);
-				vector[0].setY(maxY * o[4]);
+				vector[0].setY(maxY);
 				vector[0].setZ((vector[0].getY() - o[1])*(o[5]/o[4]) + o[2]);
 				
 				vector[1].setX(o[0]);
-				vector[1].setY(-maxY * o[4]);
+				vector[1].setY(-maxY);
 				vector[1].setZ((vector[1].getY() - o[1])*(o[5]/o[4]) + o[2]);
 			} else {
 				if (o[05] != 0) {
