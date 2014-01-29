@@ -70,7 +70,7 @@ public class Equation extends JPanel implements ActionListener{
 		this.Id = Id;
 		EquationListener l = new EquationListener(this);
 		
-
+		alpha = 1;
 		
 		TypeSel.setSelectedIndex(posNone);
 		setBounds(x, y, 230, 120);

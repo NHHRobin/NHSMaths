@@ -68,7 +68,6 @@ public class EquFrame extends JFrame implements ActionListener{
 		setVisible(true);
 		
 		Arrays.fill(needDraw, true);
-		Arrays.fill(alpha, 1);
 		
 		// Declare All Initial Vectors as (0,0,0)
 		for(int i1 = 0 ; i1 < numPlane; i1++){
@@ -100,6 +99,7 @@ public class EquFrame extends JFrame implements ActionListener{
 				// System.out.println(s);
 			}
 		}
+		
 		return vecs;
 	}
 	
