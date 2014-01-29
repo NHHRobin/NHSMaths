@@ -45,7 +45,8 @@ public class EquFrame extends JFrame implements ActionListener{
 	
 	public static final int numPlane = 5;
 	private Vector3D[][] vecs = new Vector3D[numPlane][4];
-	boolean[] needDraw = new boolean[5];
+	boolean[] needDraw = new boolean[numPlane];
+	float[] alpha = new float[numPlane];
 	
 	private Equation[] equations = new Equation[numPlane];
 	
@@ -67,6 +68,7 @@ public class EquFrame extends JFrame implements ActionListener{
 		setVisible(true);
 		
 		Arrays.fill(needDraw, true);
+		Arrays.fill(alpha, 1);
 		
 		// Declare All Initial Vectors as (0,0,0)
 		for(int i1 = 0 ; i1 < numPlane; i1++){
@@ -92,6 +94,7 @@ public class EquFrame extends JFrame implements ActionListener{
 				// s = s + ":" + i;
 				needDraw[i] = updateVecs(e, i);
 				e.update(false);
+				alpha[i] = e.alpha;
 			}
 			if (i == 4 && s != "") {
 				// System.out.println(s);
@@ -144,6 +147,10 @@ public class EquFrame extends JFrame implements ActionListener{
 
 	public boolean[] getNeedDraw() {
 		return needDraw;
+	}
+	
+	public float[] getAlpha() {
+		return alpha;
 	}
 	
 	//Utility Functions
@@ -277,4 +284,5 @@ public class EquFrame extends JFrame implements ActionListener{
 		
 		return vector;
 	}
+	
 }

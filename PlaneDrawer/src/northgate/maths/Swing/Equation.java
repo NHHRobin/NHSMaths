@@ -31,6 +31,7 @@ public class Equation extends JPanel implements ActionListener{
 	//TODO: Change this back to single per Equation boolean
 	// Changed due to errors occurring, backtraced to different source
 	public static boolean[] needUpdate = new boolean[EquFrame.numPlane];
+	public float alpha;
 	public Integer Id;
 	
 	//Vector Plane Vars
