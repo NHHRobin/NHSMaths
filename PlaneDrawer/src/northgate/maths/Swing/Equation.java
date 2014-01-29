@@ -67,7 +67,7 @@ public class Equation extends JPanel implements ActionListener{
 		EquationListener l = new EquationListener(this);
 		
 		TypeSel.setSelectedIndex(posNone);
-		setBounds(x, y, 230, 100);
+		setBounds(x, y, 230, 120);
 		setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		setLayout(null);
 		TypeSel.addActionListener(this);

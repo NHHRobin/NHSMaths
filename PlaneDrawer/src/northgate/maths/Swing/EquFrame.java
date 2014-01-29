@@ -54,7 +54,7 @@ public class EquFrame extends JFrame implements ActionListener{
 	
 	public EquFrame(){
 		super("Editing Panel");
-		setBounds(0, 0, 250, 600);
+		setBounds(0, 0, 250, 700);
 		setResizable(false);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setLayout(null);
@@ -81,7 +81,7 @@ public class EquFrame extends JFrame implements ActionListener{
 	
 	public void addEquations(){
 		for(int i = 0; i < numPlane; i++){
-			equations[i] = new Equation(5, 5 + 110*i, i);
+			equations[i] = new Equation(5, 5 + 130*i, i);
 			add(equations[i]);
 		}
 	}
@@ -256,7 +256,6 @@ public class EquFrame extends JFrame implements ActionListener{
 		vector[3].setX(maxX);
 		vector[3].setY((o[D] - (o[X] * maxX) - (o[Z] * maxZ)) * (1/o[Y]));
 		vector[3].setZ(maxZ);
-		System.out.println("drawing with calcs on y");
 		} else if(o[X] != 0){
 			vector[0].setX((o[D] - (o[Y] * -maxY) - (o[Z] * maxZ)) * (1/o[X]));
 			vector[0].setY(-maxY);
@@ -308,15 +307,6 @@ public class EquFrame extends JFrame implements ActionListener{
 		carti[3] = carti[0]*o[0] + carti[1]*o[1] + carti[2]*o[2];
 		
 		vector = createCartPlane(carti);
-		System.out.println(carti);
-		System.out.println();
-		System.out.println(o);
-		System.out.println();
-		for(Vector3D v : vector){
-
-			System.out.println(v);
-		}
-		
 		return vector;
 	}
 	
