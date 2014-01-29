@@ -169,11 +169,23 @@ public class EquFrame extends JFrame implements ActionListener{
 	//TODO : Complete
 	private Vector3D[] createCartLine(float[] o) {
 		Vector3D[] vector = new Vector3D[4];
+		float[] veci = new float[6];
 		
 		for (int i = 0; i < 4; i++) { vector[i] = new Vector3D(0,0,0); } 
 		
+		veci[0] = o[1]/o[0];
+		veci[1] = o[4]/o[3];
+		veci[2] = o[7]/o[6];
 		
+		veci[3] = o[2]/o[0];
+		veci[4] = o[5]/o[3];
+		veci[5] = o[8]/o[6];
 		
+		vector = createVectorLine(veci);
+		for(Vector3D v : vector){
+			System.out.println(v);
+		}
+		System.out.println();
 		return vector;
 	}
 	

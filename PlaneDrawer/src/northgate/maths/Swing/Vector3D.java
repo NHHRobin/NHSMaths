@@ -52,4 +52,9 @@ public class Vector3D{
 	public void setZ(double z) {
 		this.z = z;
 	}
+	
+	public String toString(){
+		return ("x = " + x + " : y = " + y + " : z = ");
+		
+	}
 }

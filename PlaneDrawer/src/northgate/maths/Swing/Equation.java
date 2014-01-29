@@ -115,6 +115,7 @@ public class Equation extends JPanel implements ActionListener{
 		cartLInputs[8] = new JTextField();
 		cartLInputs[8].setBounds(176, 63, 20, 15);
 		for (JTextField j : cartLInputs){
+			j.getDocument().addDocumentListener(l);
 			add(j);
 			j.setVisible(false);
 		}
