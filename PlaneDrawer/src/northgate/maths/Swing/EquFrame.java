@@ -94,7 +94,7 @@ public class EquFrame extends JFrame implements ActionListener{
 				// s = s + ":" + i;
 				needDraw[i] = updateVecs(e, i);
 				e.update(false);
-				alpha[i] = e.alpha;
+				//alpha[i] = e.alpha;
 			}
 			if (i == 4 && s != "") {
 				// System.out.println(s);
@@ -240,7 +240,7 @@ public class EquFrame extends JFrame implements ActionListener{
 		Vector3D[] vector = new Vector3D[4];
 		
 		for (int i = 0; i < 4; i++) { vector[i] = new Vector3D(0,0,0); } 
-		
+		if(o[Y] != 0){
 		vector[0].setX(-maxX);
 		vector[0].setY((o[D] - (o[X] * -maxX) - (o[Z] * maxZ)) * (1/o[Y]));
 		vector[0].setZ(maxZ);
@@ -256,6 +256,41 @@ public class EquFrame extends JFrame implements ActionListener{
 		vector[3].setX(maxX);
 		vector[3].setY((o[D] - (o[X] * maxX) - (o[Z] * maxZ)) * (1/o[Y]));
 		vector[3].setZ(maxZ);
+		System.out.println("drawing with calcs on y");
+		} else if(o[X] != 0){
+			vector[0].setX((o[D] - (o[Y] * -maxY) - (o[Z] * maxZ)) * (1/o[X]));
+			vector[0].setY(-maxY);
+			vector[0].setZ(maxZ);
+			
+			vector[1].setX((o[D] - (o[Y] * -maxY) - (o[Z] *-maxZ)) * (1/o[X]));
+			vector[1].setY(-maxY);
+			vector[1].setZ(-maxZ);
+			
+			vector[2].setX((o[D] - (o[Y] * maxY) - (o[Z] * -maxZ)) * (1/o[X]));
+			vector[2].setY(maxY);
+			vector[2].setZ(-maxZ);
+			
+			vector[3].setX((o[D] - (o[Y] * maxY) - (o[Z] * maxZ)) * (1/o[X]));
+			vector[3].setY(maxY);
+			vector[3].setZ(maxZ);
+		} else if(o[Z] != 0){
+			vector[0].setX(-maxX);
+			vector[0].setY(maxY);
+			vector[0].setZ((o[D] - (o[X] * -maxX) - (o[Y] * maxY)) * (1/o[Z]));
+			
+			vector[1].setX(-maxX);
+			vector[1].setY(-maxY);
+			vector[1].setZ((o[D] - (o[X] * -maxX) - (o[Y] * maxY)) * (1/o[Z]));
+			
+			vector[2].setX(maxX);
+			vector[2].setY(-maxY);
+			vector[2].setZ((o[D] - (o[X] * -maxX) - (o[Y] * maxY)) * (1/o[Z]));
+			
+			vector[3].setX(maxX);
+			vector[3].setY(maxY);
+			vector[3].setZ((o[D] - (o[X] * -maxX) - (o[Y] * maxY)) * (1/o[Z]));
+		}
+		
 		
 		return vector;
 	}

@@ -6,9 +6,6 @@ package northgate.maths.opengl;
 
 
 import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
-
 import northgate.maths.Parent;
 import northgate.maths.Swing.EquFrame;
 import northgate.maths.Swing.Vector3D;
@@ -264,20 +261,13 @@ public class GLWindow {
 		
 		Arrays.fill(Pressed, false);
 		
-		Random rand = new Random();
 		float[][] validColors = {new float[]{156/255, 177/255, 255/255},
 				                 new float[]{252/255, 177/255, 254/255},
 				                 new float[]{177/255, 252/255, 185/255},
 				                 new float[]{255/255, 176/255,  97/255},
 				                 new float[]{255/255,  54/255,  54/255}};
 		
-		for (int i = 0; i < EquFrame.numPlane; i++) {
-			int r = rand.nextInt(validColors.length);
-			color[i] = validColors[r];
-			List<float[]> f = Arrays.asList(validColors);
-			f.remove(r);
-			validColors = (float[][]) f.toArray();
-		}
+		color = validColors;
 	}
 
 	/**
